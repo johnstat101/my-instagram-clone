@@ -1,4 +1,4 @@
-{% extends 'myinstagram/layout.html' %}
+{% extends 'layout.html' %}
 
 <!--  -->
 {% load static %}
@@ -25,7 +25,9 @@
                             </div>
                             <div class="modal-body">
                                 <form action="" method="post" enctype="multipart/form-data" novalidate>
-                                    {% csrf_token %} {{ form|crispy }}
+                                    {% csrf_token %}
+                                    <!--  -->
+                                    {{ form|crispy }}
                                     <button class="btn btn-sm btn-success">Upload</button>
                                     <button type="button" class="btn btn-sm btn-outline-danger" data-dismiss="modal">
                                         Close
@@ -53,7 +55,7 @@
                 <div class="iconic ml-2">
                     <button class="btn btn-sm" type="submit" name="image_id" value="{{image.id}}">
                         <a href="{% url 'comment' image.id %}"><i class="far fa-heart hearticon mx-auto"
-                                                                  aria-hidden="true" style=""></i></a>
+                                                                  aria-hidden="true"></i></a>
                     </button>
                     <button class="btn btn-sm" type="submit"><a href="{% url 'comment' image.id %}"><i
                             class="far fa-comment hearticon mx-auto" aria-hidden="true"></i>
@@ -111,6 +113,6 @@
             </div>
         </div>
     </div>
-    <p class="text-center mt-5">All rights reserved. Charles Owiti @ 2019</p>
+    <p class="text-center mt-5">John Kimani @2022</p>
 </div>
 {% endblock %}
