@@ -11,8 +11,11 @@
             <input name="search_user" autocomplete="off" id="searching" class="form-control d-none d-md-block" placeholder="Search people">
             <i class="spinner "></i>
         </form>
+        {% if user.is_authenticated %}
         <span class="pull-right">
             <a href="{% url 'profile' user.username %}" class="btn btn-sm btn-info">My Profile</a>
         </span>
+        <!--  -->
+        {% endif %}
     </nav>
 </div>
