@@ -7,9 +7,6 @@ from .models import Post, Comment, Profile, Follow
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 from django.views.generic import RedirectView
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import authentication, permissions
 
 
 def signup(request):
@@ -132,34 +129,6 @@ class PostLikeToggle(RedirectView):
         else:
             obj.likes.add(user)
         return url_
-
-
-class PostLikeAPIToggle(APIView):
-    authentication_classes = [authentication.SessionAuthentication]
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get(self, request, id=None, format=None):
-        # id = self.kwargs.get('id')
-        obj = get_object_or_404(Post, pk=id)
-        url_ = obj.get_absolute_url()
-        user = self.request.user
-        updated = False
-        liked = False
-        if user in obj.likes.all():
-            liked = False
-            obj.likes.remove(user)
-        else:
-            liked = True
-            obj.likes.add(user)
-        updated = True
-        data = {
-
-            'updated': updated,
-            'liked': liked,
-        }
-        print(data)
-        return Response(data)
-
 
 def like_post(request):
     # image = get_object_or_404(Post, id=request.POST.get('image_id'))
